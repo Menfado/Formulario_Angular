@@ -1,0 +1,46 @@
+<h2>Register</h2>
+
+<form novalidate (ngSubmit)="onSubmit()" [formGroup]="userRegisterForm">
+    <fieldset>
+      <label for="username">Username:</label>
+      <input type="text" id="username" formControlName="username" />
+      
+      <div class="error"
+        *ngIf="
+          !userRegisterForm.get('username')?.valid &&
+          (userRegisterForm.get('username')?.dirty || submitted)
+        "
+      >
+        Login incorrect. Try again.
+      </div>
+    </fieldset>
+    <fieldset>
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password" />
+      <div class="error"
+        *ngIf="
+          !userRegisterForm.get('password')?.valid &&
+          (userRegisterForm.get('password')?.dirty || submitted)
+        "
+      >
+      Password incorrect. Try again.
+      </div>
+    </fieldset>
+    <fieldset>
+      <label for="passwordRepeat">Repeat your password:</label>
+      <input
+        type="password"
+        id="passwordRepeat"
+        formControlName="passwordRepeat"
+      />
+      <div class="error"
+        *ngIf="
+          !userRegisterForm.get('passwordRepeat')?.valid &&
+          (userRegisterForm.get('passwordRepeat')?.dirty || submitted)
+        "
+      >
+        Password Incorrect. Try again. 
+      </div>
+    </fieldset>
+    <button type="submit" [disabled]="!userRegisterForm.valid">Register</button>
+  </form>
